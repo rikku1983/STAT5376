@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[11pt]{scrartcl}
 
 \usepackage[top=1in, bottom=2cm, left=1in, right=1in]{geometry}
 \usepackage{graphicx}
@@ -6,13 +6,23 @@
 
 \begin{document}
 
-\title{Homework 2 STAT5376}
+\title{Project 1 STAT5376}
+\subtitle{Bayesian Analysis of Noisy Images}
 \author{Li Sun}
 \date{\today}
 \maketitle
 
 \noindent
-1. Write codes to simulate a discrete-time finite-state MC process with following transition Matrix:\\
+1. Goal: Given observed noisy images, our goal is to perform a Bayesian analysis of this data. We will assume a prior probability model and an observation model to obtain a posterior density, and will generate samples from the posterior.
+
+\bigskip
+
+\noindent
+2. Models\\
+(a)Prior Model: \\
+$$f(I_{i,j}|\text{all other pixels})=f(I_{i,j}|I_{i,j-1},I_{i-1,j},I_{i+1,j},I_{i,j+1})=N(m,\sigma^2_1)$$
+All conditional density of a pixel of this m by n Markov Random field only depends on 4 adjacent pixels, 3 for edge pixels and 2 for corner pixels. The m is mean of all neighbors\\
+
 \begin{center}
 $
 \Pi =

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.9.2)  23 SEP 2016 11:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.9.2)  28 SEP 2016 12:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./hw2.tex
-(./hw2.tex
+**./project1.tex
+(./project1.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
 (c:/texlive/2016/texmf-dist/tex/latex/koma-script/scrartcl.cls
@@ -215,21 +215,55 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2739.
 LaTeX Info: Redefining \] on input line 2740.
-) (./hw2.aux)
-\openout1 = `hw2.aux'.
+)
+(c:/texlive/2016/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
+(c:/texlive/2016/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(c:/texlive/2016/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen122
+\captionmargin@=\dimen123
+\captionwidth=\dimen124
+\caption@tempdima=\dimen125
+\caption@indent=\dimen126
+\caption@parindent=\dimen127
+\caption@hangindent=\dimen128
+)
+Package caption Info: KOMA-Script document class.
+\c@ContinuedFloat=\count104
+)
+\c@KVtest=\count105
+\sf@farskip=\skip58
+\sf@captopadj=\dimen129
+\sf@capskip=\skip59
+\sf@nearskip=\skip60
+\c@subfigure=\count106
+\c@subfigure@save=\count107
+\c@lofdepth=\count108
+\c@subtable=\count109
+\c@subtable@save=\count110
+\c@lotdepth=\count111
+\sf@top=\skip61
+\sf@bottom=\skip62
+) (./project1.aux)
+\openout1 = `project1.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -267,16 +301,16 @@ LaTeX Font Info:    ... okay on input line 7.
 
 (c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
-\scratchdimen=\dimen122
+\scratchcounter=\count112
+\scratchdimen=\dimen130
 \scratchbox=\box30
-\nofMPsegments=\count105
-\nofMParguments=\count106
+\nofMPsegments=\count113
+\nofMParguments=\count114
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count107
-\MPscratchDim=\dimen123
-\MPnumerator=\count108
-\makeMPintoPDFobject=\count109
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen131
+\MPnumerator=\count116
+\makeMPintoPDFobject=\count117
 \everyMPtoPDFconversion=\toks22
 ) (c:/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
@@ -324,91 +358,176 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Underfull \hbox (badness 10000) in paragraph at lines 20--23
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--24
 
  []
 
-<hw2p1.png, id=1, 421.575pt x 316.18124pt>
-File: hw2p1.png Graphic file (type png)
- <use hw2p1.png>
-Package pdftex.def Info: hw2p1.png used on input line 36.
-(pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
 
-Overfull \hbox (5.13644pt too wide) in paragraph at lines 35--40
-[] \OT1/cmr/m/n/10.95 The re-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--40
+Underfull \hbox (badness 10000) in paragraph at lines 24--26
 
  []
 
 [1
 
 
-{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./hw2p1.png (PN
-G copy)>] <hw2p2.png, id=16, 421.575pt x 316.18124pt>
-File: hw2p2.png Graphic file (type png)
- <use hw2p2.png>
-Package pdftex.def Info: hw2p2.png used on input line 46.
+{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<validateingMH100s10.png, id=16, 443.40656pt x 272.51813pt>
+File: validateingMH100s10.png Graphic file (type png)
+
+<use validateingMH100s10.png>
+Package pdftex.def Info: validateingMH100s10.png used on input line 61.
+(pdftex.def)             Requested size: 184.9429pt x 113.66675pt.
+
+<validateingMH500s10.png, id=17, 443.40656pt x 272.51813pt>
+File: validateingMH500s10.png Graphic file (type png)
+
+<use validateingMH500s10.png>
+Package pdftex.def Info: validateingMH500s10.png used on input line 64.
+(pdftex.def)             Requested size: 184.9429pt x 113.66675pt.
+
+<validateingMH100s20.png, id=18, 443.40656pt x 272.51813pt>
+File: validateingMH100s20.png Graphic file (type png)
+
+<use validateingMH100s20.png>
+Package pdftex.def Info: validateingMH100s20.png used on input line 68.
+(pdftex.def)             Requested size: 184.9429pt x 113.66675pt.
+
+<validateingMH500s20.png, id=19, 443.40656pt x 272.51813pt>
+File: validateingMH500s20.png Graphic file (type png)
+
+<use validateingMH500s20.png>
+Package pdftex.def Info: validateingMH500s20.png used on input line 71.
+(pdftex.def)             Requested size: 184.9429pt x 113.66675pt.
+
+<validateingMH100s100.png, id=20, 443.40656pt x 272.51813pt>
+File: validateingMH100s100.png Graphic file (type png)
+
+<use validateingMH100s100.png>
+Package pdftex.def Info: validateingMH100s100.png used on input line 75.
+(pdftex.def)             Requested size: 184.9429pt x 113.66675pt.
+
+<validateingMH500s100.png, id=21, 443.40656pt x 272.51813pt>
+File: validateingMH500s100.png Graphic file (type png)
+
+<use validateingMH500s100.png>
+Package pdftex.def Info: validateingMH500s100.png used on input line 78.
+(pdftex.def)             Requested size: 184.9429pt x 113.66675pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--85
+
+ []
+
+[2 <./validateingMH100s10.png (PNG copy)> <./validateingMH500s10.png (PNG copy)
+> <./validateingMH100s20.png (PNG copy)> <./validateingMH500s20.png (PNG copy)>
+ <./validateingMH100s100.png (PNG copy)> <./validateingMH500s100.png (PNG copy)
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
+
+ []
+
+<D1_1000.png, id=27, 421.575pt x 316.18124pt>
+File: D1_1000.png Graphic file (type png)
+ <use D1_1000.png>
+Package pdftex.def Info: D1_1000.png used on input line 94.
 (pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
 
-Overfull \hbox (0.90854pt too wide) in paragraph at lines 44--48
-[] \OT1/cmr/m/n/10.95 1.This
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--48
-
- []
-
-<hw2p3.png, id=17, 421.575pt x 316.18124pt>
-File: hw2p3.png Graphic file (type png)
- <use hw2p3.png>
-Package pdftex.def Info: hw2p3.png used on input line 52.
-(pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
- [2 <./hw2p2.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-
- []
-
-<hw2p4.png, id=21, 421.575pt x 316.18124pt>
-File: hw2p4.png Graphic file (type png)
- <use hw2p4.png>
-Package pdftex.def Info: hw2p4.png used on input line 77.
+<D1_20.png, id=28, 421.575pt x 316.18124pt>
+File: D1_20.png Graphic file (type png)
+ <use D1_20.png>
+Package pdftex.def Info: D1_20.png used on input line 96.
 (pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--79
+<D1_20_20.png, id=29, 421.575pt x 316.18124pt>
+File: D1_20_20.png Graphic file (type png)
+ <use D1_20_20.png>
+Package pdftex.def Info: D1_20_20.png used on input line 99.
+(pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
+
+<D1_100_20.png, id=30, 421.575pt x 316.18124pt>
+File: D1_100_20.png Graphic file (type png)
+ <use D1_100_20.png>
+Package pdftex.def Info: D1_100_20.png used on input line 102.
+(pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
+
+<D2_10_20.png, id=31, 1445.4pt x 724.95844pt>
+File: D2_10_20.png Graphic file (type png)
+ <use D2_10_20.png>
+Package pdftex.def Info: D2_10_20.png used on input line 104.
+(pdftex.def)             Requested size: 455.23724pt x 455.25499pt.
+
+<D3_10_20.png, id=32, 1445.4pt x 724.95844pt>
+File: D3_10_20.png Graphic file (type png)
+ <use D3_10_20.png>
+Package pdftex.def Info: D3_10_20.png used on input line 105.
+(pdftex.def)             Requested size: 455.23724pt x 455.25499pt.
+
+<D4_10_20.png, id=33, 1445.4pt x 724.95844pt>
+File: D4_10_20.png Graphic file (type png)
+ <use D4_10_20.png>
+Package pdftex.def Info: D4_10_20.png used on input line 106.
+(pdftex.def)             Requested size: 455.23724pt x 455.25499pt.
+
+<D5_10_20.png, id=34, 1445.4pt x 724.95844pt>
+File: D5_10_20.png Graphic file (type png)
+ <use D5_10_20.png>
+Package pdftex.def Info: D5_10_20.png used on input line 107.
+(pdftex.def)             Requested size: 455.23724pt x 455.25499pt.
+
+Overfull \hbox (2.26929pt too wide) in paragraph at lines 91--109
+[] 
+ []
+
+
+Overfull \hbox (2.26929pt too wide) in paragraph at lines 91--109
+[] 
+ []
+
+
+Overfull \hbox (2.26929pt too wide) in paragraph at lines 91--109
+[] 
+ []
+
+
+Overfull \hbox (2.26929pt too wide) in paragraph at lines 91--109
+[] 
+ []
+
+[3 <./D1_1000.png (PNG copy)>] [4 <./D1_20.png (PNG copy)> <./D1_20_20.png (PNG
+ copy)>] [5 <./D1_100_20.png (PNG copy)>] [6 <./D2_10_20.png (PNG copy)>]
+[7 <./D3_10_20.png (PNG copy)>] [8 <./D4_10_20.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 
  []
 
-[3 <./hw2p3.png (PNG copy)>] [4 <./hw2p4.png (PNG copy)>] (./hw2.aux) ) 
+[9 <./D5_10_20.png (PNG copy)>] (./project1.aux) ) 
 Here is how much of TeX's memory you used:
- 4469 strings out of 493013
- 73104 string characters out of 6137009
- 228895 words of memory out of 5000000
- 7975 multiletter control sequences out of 15000+600000
- 9604 words of font info for 35 fonts, out of 8000000 for 9000
+ 5714 strings out of 493013
+ 95847 string characters out of 6137009
+ 254442 words of memory out of 5000000
+ 9196 multiletter control sequences out of 15000+600000
+ 10968 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 49i,8n,51p,8816b,209s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texl
-ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2016/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2016/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10
-.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/
-texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on hw2.pdf (4 pages, 178260 bytes).
+ 50i,10n,54p,8821b,424s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/2016/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2016/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi9.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2016/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmssbx10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy8.pfb>
+Output written on project1.pdf (9 pages, 3452552 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
