@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.9.2)  23 SEP 2016 11:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.9.2)  6 NOV 2016 14:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -324,91 +324,50 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Underfull \hbox (badness 10000) in paragraph at lines 20--23
-
- []
-
-<hw2p1.png, id=1, 421.575pt x 316.18124pt>
-File: hw2p1.png Graphic file (type png)
- <use hw2p1.png>
-Package pdftex.def Info: hw2p1.png used on input line 36.
+<hw31b.png, id=1, 421.575pt x 316.18124pt>
+File: hw31b.png Graphic file (type png)
+ <use hw31b.png>
+Package pdftex.def Info: hw31b.png used on input line 24.
 (pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
 
-Overfull \hbox (5.13644pt too wide) in paragraph at lines 35--40
-[] \OT1/cmr/m/n/10.95 The re-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--40
-
- []
-
-[1
-
-
-{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./hw2p1.png (PN
-G copy)>] <hw2p2.png, id=16, 421.575pt x 316.18124pt>
-File: hw2p2.png Graphic file (type png)
- <use hw2p2.png>
-Package pdftex.def Info: hw2p2.png used on input line 46.
+<hw31c.png, id=2, 421.575pt x 316.18124pt>
+File: hw31c.png Graphic file (type png)
+ <use hw31c.png>
+Package pdftex.def Info: hw31c.png used on input line 28.
 (pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
-
-Overfull \hbox (0.90854pt too wide) in paragraph at lines 44--48
-[] \OT1/cmr/m/n/10.95 1.This
- []
+ [1
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--48
-
- []
-
-<hw2p3.png, id=17, 421.575pt x 316.18124pt>
-File: hw2p3.png Graphic file (type png)
- <use hw2p3.png>
-Package pdftex.def Info: hw2p3.png used on input line 52.
+{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./hw31b.png (PN
+G copy)>]
+<hw32.png, id=13, 421.575pt x 316.18124pt>
+File: hw32.png Graphic file (type png)
+ <use hw32.png>
+Package pdftex.def Info: hw32.png used on input line 41.
 (pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
- [2 <./hw2p2.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
+ [2 <./hw31c.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 45--51
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-
- []
-
-<hw2p4.png, id=21, 421.575pt x 316.18124pt>
-File: hw2p4.png Graphic file (type png)
- <use hw2p4.png>
-Package pdftex.def Info: hw2p4.png used on input line 77.
-(pdftex.def)             Requested size: 421.57396pt x 316.18047pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 74--79
-
- []
-
-[3 <./hw2p3.png (PNG copy)>] [4 <./hw2p4.png (PNG copy)>] (./hw2.aux) ) 
+[3 <./hw32.png (PNG copy)>] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
- 4469 strings out of 493013
- 73104 string characters out of 6137009
- 228895 words of memory out of 5000000
- 7975 multiletter control sequences out of 15000+600000
+ 4464 strings out of 493013
+ 73035 string characters out of 6137009
+ 227895 words of memory out of 5000000
+ 7971 multiletter control sequences out of 15000+600000
  9604 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 49i,8n,51p,8816b,209s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texl
-ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2016/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2016/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10
-.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/
-texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on hw2.pdf (4 pages, 178260 bytes).
+ 49i,6n,51p,8816b,209s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/2016/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pf
+b><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
+Output written on hw2.pdf (3 pages, 103935 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 37 PDF objects out of 1000 (max. 8388607)
+ 23 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
