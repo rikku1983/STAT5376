@@ -1,0 +1,656 @@
+\documentclass[11pt]{beamer}
+
+\usetheme{Darmstadt}
+
+\usepackage{times}
+\usefonttheme{structurebold}
+
+\usepackage[english]{babel}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{multicol}
+
+\input{slabbrev}
+
+\title{Multivariate and Functional Principal Components without Eigenanalysis}
+
+\author{Jim Ramsay, McGill University   \\
+        Alois Kneip, University of Bonn \\
+      Department of Applied Mathematics \\
+      University of Colorado at Boulder \\
+      24 October 2014}
+\date{}
+
+\begin{document}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\maketitle
+
+\end{frame}
+
+%%  --------------------------------------------------------------------
+%
+%\begin{frame}
+%
+%\begin{center}
+%\includegraphics[height=3in, width=4in]{figs/Montreal_data_boundary_small.eps}
+%\end{center}
+%
+%\end{frame}
+%
+%%  --------------------------------------------------------------------
+%
+%\begin{frame}
+%
+%\frametitle{Census tract locations on the Island of Montreal}
+%
+%\bi
+%  \item Yellow boundary points are locations of zero normal flow.
+%  \item Red boundary points are locations of zero level.
+%  \item Lower hole is Trudeau Airport.
+%  \item Upper hole is oil refinery and water treatment complex.
+%  \item This object is embedded in a two-dimensional locally Euclidean space.
+%  \item This space has no natural zero, is invariant under translations, and is therefore affine.
+%  \item There is no natural Cartesian coordinate system here, and consequently no vector space structure.
+%  \item We could compute principal components of point locations, but we would have to use a coordinate system to do.
+%\ei
+%
+%\end{frame}
+%
+%%  --------------------------------------------------------------------
+%
+%\begin{frame}
+%
+%\begin{center}
+%\includegraphics[height=3in, width=4in]{figs/fig_Montreal_triangulation_dirichlet_small.eps}
+%\end{center}
+%
+%\end{frame}
+%
+%%  --------------------------------------------------------------------
+%
+%\begin{frame}
+%
+%\frametitle{Census tract mesh on the Island of Montreal}
+%
+%\bi
+%  \item Tract locations are vertices in a Delaunay triangulation.
+%  \item Now we have a two-level coordinate system:
+%  \bi
+%    \item Edges connect vertices
+%    \item Barycentric coordinates navigate us within triangles
+%  \ei
+%  \item We need to learn how to do data analysis with multi-level coordinate systems.
+%\ei
+%
+%\end{frame}
+%
+%%  --------------------------------------------------------------------
+%
+%\begin{frame}
+%
+%\begin{center}
+%\includegraphics[height=3in, width=4in]{figs/fig_Montreal_results_dirichlet_small_ter.eps}
+%\end{center}
+%
+%\end{frame}
+%
+%%  --------------------------------------------------------------------
+%
+%\begin{frame}
+%
+%\frametitle{Smoothed annual income over the Island of Montreal}
+%
+%Smoothing algorithm described in Sangalli, L. M., Ramsay, J. O. and Ramsay, T. O. (2013) Spatial spline regression models. \emph{Journal of the Royal Statistical Society, Series B,} {\bf 75}, 681-703.
+%
+%\end{frame}
+%
+%%  --------------------------------------------------------------------
+%
+%\begin{frame}
+%
+%\frametitle{What's the point here?}
+%
+%\bi
+%  \item Everywhere in applied mathematics we use Cartesian coordinate systems,
+%  \item But most of the time they are unnatural add-on's to the data domain structure.
+%  \item Euclidean and vector spaces are nearly always confounded, but they shouldn't be.
+%  \item In this talk we focus the statistical identification of a flat subspace, but leave the choice of coordinate system open.
+%\ei
+%
+%\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{PCA: The essential idea (Multivariate Case)}
+
+\bi
+  \item We have a $N$ by $n$ data matrix $\Xbold$.
+  \item We propose the reduced rank $K$ bilinear model
+  \[
+    \Xbold = \Fbold \Abold
+  \]
+  \item where $\Abold$ is a $K$ by $n$ matrix of principal component coefficients, with $K << n$
+  \item and $\Fbold$ is a $N$ by $K$ matrix of principal component scores
+   \item Usually $N >> n$, and the factor scores are interesting, but it's $\Abold$ that tells
+  us what the core $K$ components of variation are, to within a full rank linear transformation.
+  \item The fundamental goal of PCA is to identify the optimal linear subspace $\cal{R}^K$, called a Grassmann manifold.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{PCA: The essential idea (Functional Case)}
+
+\bi
+  \item We have a $N$ curves $x_i(t)$.
+  \item We propose the reduced rank $K$ bilinear model
+  \[
+    \xbold(t) = \Fbold \abold'(t)
+  \]
+  \item where $\abold$ is a vector $K$ principal component functions, and
+  \item and $\Fbold$ is a $N$ by $K$ matrix of principal component scores.
+  \item The fundamental goal of PCA is to identify the optimal linear subspace of functions 
+  $\abold$.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{PCA: The essence of PCA}
+
+\bi
+  \item PCA identifies an optimal flat subspace.
+  \item In principle, this task can be carried out in any Euclidean space, and does not require a rectilinear orthogonal coordinate system. 
+  \item Or, in fact, any coordinate system at all.  In the Euclidean case, the subspace is called a \emph{Grassmann manifold.}
+  \item But we will assume a vector space structure in this talk.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Structural parameters}
+
+\bi
+  \item Structural parameters are typically of direct interest, for example fixed effect parameters for ME models.
+  \item Their number is usually fixed, and typically much smaller than the number of nuisance parameters.
+  \item Principal loading matrix $\Abold$ is a structural parameter in multivariate PCA.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Nuisance parameters}
+
+\bi
+  \item Nuisance parameters are required in a model to capture important variation, but are seldom themselves of direct interest.  A well-known example are random effect parameters in a mixed effects (ME) model.
+  \item The number of nuisance parameters often depends on the configuration or design of the data.
+  \item The principal component scores matrix $\Fbold$ contains nuisance parameters.
+  \item Estimating nuisance and structural parameters using the same strategy risks burning up large number of degrees of freedom and rendering the structural parameter estimates unnecessarily unstable.  
+  \item ME model estimation recognizes this, for example.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{What we'd like to do with PCA}
+
+\bi
+  \item Provide GLM capability: PCA for mixtures of types of variables, using fitting criteria
+  appropriate to each data type.
+  \item Define a fitting strategy that recognizes PC scores $\Fbold$ as nuisance parameters
+  and PC components in $\Abold$ as structural parameters.
+\ei
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{More Generalizations of PCA}
+
+\bi
+  \item Synthesize the treatment of multivariate and functional data
+  \item Implement partial least squares: an approximation of an external vector $\ybold$ via a $K$ dimensional subspace $\cal{R}^K$
+  \item Combine PCA with the registration of functional data
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Eigenanalysis and PCA}
+
+\bi
+  \item The singular value decomposition yields both $\Abold$ and $\Fbold$,
+  \item But the usual procedure is to extract $\Abold$ from the eigenanalysis of $N^{-1} \Xbold' \Xbold$
+  or the correlation matrix $\Rbold$
+  \item and then use regression analysis to obtain the least squares estimate
+  \[
+    \Fbold = \Xbold \Abold' (\Abold' \Abold)^{-1}
+  \]
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Why eigenanalysis gets in the way}
+
+\bi
+  \item Eigenanalysis forces us to use least squares fitting for all variables.
+  \item Eigenanalysis treats the estimation of $\Fbold$ and $\Abold$ symmetrically, but $\Abold$ contains structural parameters and $\Fbold$ contains nuisance parameters.  They require different estimation strategies.
+  \item Eigenalysis inappropriately highlights the basis system rather than the subspace that it defines.
+  \item Eigenalysis cannot accommodate extensions such as registration of functional data.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The parameter cascading strategy}
+
+\bi
+  \item Parameter cascading is a method for estimating large and varying numbers of nuisance parameters $\cbold$ in the presence of a small fixed number of structural parameters $\thetabold$.
+  \item Parameter cascading defines nuisance parameters as \emph{smooth} functions $\cbold(\thetabold)$ of structural parameters.
+  \item Imposing smoothness or regularizing $\cbold(\thetabold)$ keeps nuisance parameters from burning up large numbers of degrees of freedom, and therefore stabilizes the structural parameter estimates.
+  \item Nuisance parameter function $\cbold(\thetabold)$ is often defined by an inner optimization of a criterion $J(\cbold|\thetabold)$ each time $\thetabold$ is changed in an outer optimization cycle.
+  \item The outer optimization $H(\thetabold)$ is frequently different from $J(\cbold|\thetabold).$
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The parameter cascading strategy and the Implicit Function Theorem}
+
+\bi
+  \item The total derivative or gradient of $H$ with respect to $\thetabold$ requires the use of the Implicit Function Theorem:
+    \[
+        \frac{dH}{d \thetabold} = \frac{\partial H}{\partial \thetabold} -
+        \frac{\partial H}{\partial \cbold} \bigg[\frac{\partial^2 J}{\partial^2 \cbold^2}\bigg]^{-1}
+        \frac{\partial^2 J}{\partial \cbold \partial \thetabold}
+    \]
+  \item The total Hessian is also available in this way.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The parameter cascading strategy for multivariate PCA}
+
+\bi
+  \item We add smoothness to the least squares criterion for $\Fbold$ given $\Abold$ by attaching penalty terms:
+  \[
+    J(\Fbold|\Abold,\Xbold) = \| \Xbold - \Fbold \Abold) \|^2 +
+              \lambda_1 \| \Fbold' \Pbold_1 \Fbold \|^2 + \lambda_2 \| \Fbold  \Pbold_2 \Fbold' \|^2.
+  \]
+  \item The minimizer $\hat{\Fbold}(\Abold)$ has a closed form expression.
+  \item Order $K$ matrix $\Pbold_1$ and order $N$ matrix $\Pbold_2$ are often projectors onto complements of some pre-defined subspaces or special patterns.
+  \item Smoothing parameters $\lambda_1 \geq 0$ and $\lambda_2 \geq 0$ allow us to control the emphasis that we place on the PC scores having these particular structures.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The fitting criterion for $\Abold$}
+
+\bi
+  \item This is defined in terms of only the PC coefficients $\Abold$.
+  \item Consequently, we can choose our fitting criteria freely, such as
+    \[
+      H(\Abold) = -\sum_j^n \ln L_j(\Abold|\xbold_j)
+    \]
+  where $-\ln L_j$ is the negative log likelihood appropriate to variable $j$ and defined by data $N$-vector $\xbold_j$.
+  \item The gradient of $G$ will depend on $\Abold$ both directly through its the partial derivative, and also via the $N$ functions $\fbold_i(\Abold)$
+    \[
+        \frac{dH}{d \Abold} = \frac{\partial H}{\partial \Abold} + 
+        \sum_i^N \frac{\partial H}{\partial F_i} \frac{dF_i}{d \Abold}
+    \]
+  \item PCA is now estimates $Kn$ parameters instead of $K(N+n)$ parameters.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Evaluating the fit}
+
+\bi
+  \item Without regularization, $\Abold$ and $\Fbold$ are defined to within a nonsingular linear transformation $\Wbold$ of order $K$: $\Fbold \Wbold \Wbold^{-1} \Abold$ provides the same fit to the data.
+  \item Regularization may remove some of this unidentifiability, but some will inevitably remain.
+  \item Consequently, we cannot assess fit in term of $\Abold$, but must rather focus our attention on:
+  \bi
+    \item predictive criteria assessing fit at the data level
+    \item geometric measures of conformity between the $K$-dimensional estimated subspace and some true or population subspace.
+  \ei
+  \item Canonical correlation methodology serves these purposes well.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The parameter cascading strategy for functional PCA (functional case)}
+
+\bi
+  \item The data are now $N$ functions $x_i(t)$
+  \item The principal coefficients are now functions $a_k(t), k=1,\ldots,K$.
+  \item The inner criterion $J$ is now:
+  \[
+    J(\Fbold|\abold,\xbold) = \sum_i \int [x_i(t) - \sum_k f_{ik} a_k(t)]^2 dt +
+              \lambda_1 \| \Fbold' \Pbold_1 \Fbold \|^2 + \lambda_2 \| \Fbold  \Pbold_2 \Fbold' \|^2.
+  \]
+  \item Structural parameter $\Abold$ is now a $K$ by $L$ matrix of coefficients for a basis function of each $a_k$ in terms of $L$ basis functions.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\bi
+  \item The outer criterion could be
+  \[
+    H(\Abold|\xbold) = \sum_i \int [x_i(t) - \sum_k f_{ik} a_k(t)]^2 dt + \lambda_3 \trace(\Abold \Ubold \Abold')
+  \]
+  where penalty matrix $\Ubold$ defines a roughness penalty for the $a_k$'s.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Example 1.  PCA of female height acceleration curves}
+
+\bi
+  \item The Berkeley Growth data contain heights of 56 girls at 31 unequally spaced ages.
+  \item Nice estimates of height acceleration are possible using monotone smoothing methods.
+  \item The principal component scores have a tightly curvilinear structure.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/FemaleAccel.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/GrowthComponent_0.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/GrowthScore_0.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Regularized PCA of the children's acceleration curves}
+
+\bi
+  \item The principal component scores in $\Fbold$ are close to being on a circle,
+  indicated by the red dots.
+  \item We would like to explore the use of scores that are required to be close to or on the circle.
+  \item The penalty term $\lambda_2 \| \Fbold  \Pbold_2 \Fbold' \|^2$, where projection matrix $\Pbold$ projects scores on to the circle of red dots, will serve that purpose.
+  \item Here are the scores resulting from using $\lambda_2 = 1$.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/GrowthScore_1.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\bi
+  \item The unconstrained error sum of squares was 127.2 and the constrained value was 138.2,
+  corresponding to a squared multiple correlation of 0.08.  
+  \item A heavier penalty puts the scores nearly on the circle, corresponding to $R^2 = 0.12.$
+  \item The angle associated with each pair of scores measures phase variation, which is how early or late the pubertal growth spurt happens.
+  \item But, we might have missed something ...
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/GrowthFSmooth.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\bi
+  \item The scores of the girls in the upper left are outside of the constant distance curve, 
+  and the girls on the bottom and lower right are inside.  
+  \item The upper left girls have earlier puberty, and also more intense spurts;  the late puberty girls have milder growth spurts.  
+  \item Early puberty girls are compensated for losing out on a few years of growth by having more intense spurts.
+  \item It looks like principal component scores for uncentered functional observations should be represented in hyper-spherical coordinates!
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The PCA/PLS hybrid criterion}
+
+\bi
+  \item Keeping to LS fitting for illustration, we now use fitting criterion
+  \[
+    G(\Abold| \Xbold, \ybold) = (1-\gamma) \| \Xbold - \Fbold \Abold \|^2 +
+                                    \gamma \| \ybold' \Qbold(\Abold) \ybold \|^2.
+  \]
+  where the relaxation parameter $\gamma \in [0,1]$ and
+  \[
+    \Qbold(\Abold) = \Ibold - \Fbold(\Abold) [\Fbold(\Abold)' \Fbold(\Abold)]^{-1} \Fbold(\Abold)'.
+  \]
+  \item The second term measures the extent to which external variable $\ybold$ is unpredictable from within the subspace defined by the PC loadings in $\Abold.$
+  \item The boundary conditions $\gamma = 0$ and $\gamma = 1$ correspond to pure PCA and pure partial least saquares, respectively.
+  \item The unregularized solution was worked out by de Jong and Kiers (1992).
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Example 2.  PCA and PLS fits for daily average temperature and precipitation}
+
+\bi
+  \item The Canadian weather data consist of daily temperature and precipitation data for 35 weather stations averaged over 34 years.
+  \item We run the year from July 1st to June 30th in order to highlight winter variation.
+  \item PCA of the temperature shows that two principal components can fit 97.3\% of the temperature variation.
+  \item How well can we fit annual precipitation averages from the principal component scores, 
+  \item and from two component scoress identified by PLS? 
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/Daily_TempData.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/Daily_PCA_Components.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/Daily_PLS_Components.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/Daily_PCA_Scores.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/Daily_PLS_Scores.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/Daily_PCA_Fit.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{center}
+\includegraphics[width=4in]{figs/Daily_PLS_Fit.png}
+\end{center}
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Example 2.  Conclusions}
+
+\bi
+  \item Fitting an external variable using principal component scores (``PCA regression'') does achieve something.
+  \item But optimizing the subspace for this task does much better.
+  \item The canonical correlations between these two subspaces are 0.999 and 0.865, respectively.
+  \item The two subspaces differ mainly in terms of the second component:
+  \bi
+    \item In PCA this straightforward annual level.
+    \item In PLS this is a 5-cycle sinusoid.
+  \ei
+  \item The PLS fits group nicely into five tight clusters plus Prince Rupert on the upper west coast.
+  \item In ascending order of amount of precipitation they are:
+  (1) High Arctic, (2) Sub Arctic (3) Prairie, (4) Great Lakes, St. Lawrence and (5) coastal.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Conclusions}
+
+\bi
+  \item PCA via eigenanalysis restricts the extendability and versatility of PCA.
+  \item Parameter cascading re-defines PCA as a much lower dimensional fitting problem,
+  \item and greatly extends its ability to represent data in a lower dimensional space.
+  \item Roughness penalties or regularization can lead to simpler principal component structures.
+  \item Partial least squares can do substantially better than PCA-regression in fitting external variables using high dimensional covariate spaces.
+\ei
+
+\end{frame}
+
+\end{document}

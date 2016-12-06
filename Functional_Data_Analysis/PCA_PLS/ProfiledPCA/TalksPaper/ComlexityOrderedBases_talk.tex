@@ -1,0 +1,207 @@
+\documentclass[11pt]{beamer}
+
+\usetheme{Darmstadt}
+
+\usepackage{times}
+\usefonttheme{structurebold}
+
+\usepackage[english]{babel}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{multicol}
+
+\input{slabbrev}
+
+\title{Data Smoothing with Complexity-ordered Basis Functions}
+
+\author{Jim Ramsay, McGill University}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+
+\maketitle
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The essential idea}
+
+\bi
+  \item An attractive aspect of principal components analysis of functional data is that each successive
+  component is more functionally complex than its predecessor.
+  \item Principal components are ordered in terms of complexity.
+  \item We can achieve the same thing with fixed non-empirical basis systems.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{How we choose basis systems}
+
+\bi
+  \item We choose basis function systems $\phi_1, \ldots, \phi_K$ for all sorts of reasons:
+  \bi
+    \item to match characteristics of our data, e. g. fourier bases for periodic data
+    \item fast computation for large records, e. g. b-splines
+    \item lowest possible dimensionality, e. g. principal component bases
+    \item substantive interpretability
+  \ei
+  \item Unlike PCA, these basis functions are not typically ordered in terms of complexity.
+  \item Unlike PCA, we can't just use the first basis function, the first two, and etc. until we find that we like the fit.
+  \item We need to work with them all simultaneously.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The typical roughness-penalized smoothing problem}
+
+\bi
+  \item The function $x$ fitting the data $y_1, \ldots, y_n$ is defined by the basis function expansion
+  \[
+    x(t) = \sum_k^K c_k \phi_k(t) = \cbold'\phibold(t)
+  \]
+  \item We often use roughness penalties to enforce smoothness, e. g.
+  \[
+    \min_x \{ \sum_i[y_i - x(t_i)]^2 + \lambda \int ](D^2 x)(t)]^2 \, dt \}
+  \]
+  \item Here, ``roughness'' is defined as the total squared curvature of $s$.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The structure of roughness penalty matrix $\Rbold$}
+
+\bi
+  \item The second roughness penalty term can be re-expressed as
+  \[
+    P(x) =  \lambda \cbold' \Rbold \cbold
+  \
+  \item  Order $K$ roughness penalty matrix $\Rbold$ contains, when roughness is defined as the size of the
+   second derivative, $D^2 x$, the basis curvature inner products
+  \[
+    \int D^2\phi_k(t) D^2\phi_\ell(t) \, dt
+  \]
+  \item The internal structure of $\Rbold$ contains information about the complexity of the
+  function $x$ defined by coefficient vector $\cbold$.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The kernel of  $\Rbold$}
+
+\bi
+  \item The solutions of the equation
+  \[
+    \Rbold \cbold = 0
+  \]
+  correspond to functions that are ``hypersmooth'' in the sense of having zero roughness penalty.
+  \item We say that $\cbold$ is in the \emph{kernel} of linear transformation $\Rbold$
+  \item Defining roughness as the size of the curvature $D^2 x(t)$ means that this equation defines
+  $x$ as a straight line having zero curvature.
+  \item Different measures of roughness correspond to different ``kernel functions''
+  \item Harmonic curvature, $D^3 x + \omega^2 x$, has as kernel functions 
+  \[
+    x(t) = 1, \sin(\omega t), \ \mbox{and} \ \cos(\omega t)
+  \]
+  \item Ideally, our choice of ``rougness'' should imply kernel functions that come close to the shape of our data.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The eigenvalues and eigenvectors of  $\Rbold$}
+
+\bi
+  \item We can generalize the kernel equation to
+  \[
+    \Rbold \cbold = \mu \cbold
+  \]
+  \item A solution $\cbold_\ell$ this equation is an eigenvector, and the corresponding $\mu_\ell$ is its eigenvalue.
+  \item $\cbold_\ell$ defines a function with a particular type of roughness, and $\mu_\ell$ indicates the size
+  of the penalty placed on that kind of roughness.  
+  \item Kernel functions are ``hypersmooth'' because $\mu = 0$ for that kind of function shape.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Ordering eigenfunction by complexity}
+
+\bi
+  \item Contrary to the usual practice, let's order the eigenvalues in \emph{increasing} order.  
+  \item Because $\Rbold$ contains inner products, $\Rbold$ is symmetric and these eigenvalues will be non-negative.
+  \item The first few will have eigenvalues 0.  The corresponding functions show us what the kernel functions are, 
+  something that isn't that obvious for choices of linear differential operators more exotic than $D^2$.
+  \item As we progress through the increasing eigenvalues, the corresponding eigenfunctions $\cbold_\ell' \phibold$ will 
+  more and more rough.
+  \item $\cbold_K' \phibold$ will be the worst of the lot.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The Fourier series case}
+
+\bi
+  \item For those that like their examples mathematical, consider the roughness definition $D^3 x + \omega^2 \D x$
+  \item We already pointed out that the first three are $1, \sin(\omega t), \ \mbox{and} \ \cos(\omega t)$, corresponding
+  to $\mu_\ell = 0.$
+  \item The 4th is $\sin(2 \omega t)$, oscillating twice as often as the 2nd.
+  \item The $2m + 1$th is $\cos m \omega t$, oscillating $m$ times more often that the 3rd.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The B-spline case}
+
+\bi
+  \item The simple differential operator $D^m$ implies a spline function as $x$, which is piece-wise a polynomial of
+  order $2m$ (of degree $2m-1$).  The polynomial segments are joined end-to-end at locations called \emph{knots.}
+  \item Consider an order 4 B-spline basis over the interval $[0,10]$ with knots at 2, 4, 6, and 8.  There are 8 basis functions for this system, and they are shown in the following figure.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\include
+
+
+
+

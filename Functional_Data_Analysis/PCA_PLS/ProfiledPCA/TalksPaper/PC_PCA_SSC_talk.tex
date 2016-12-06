@@ -1,0 +1,172 @@
+\documentclass[11pt]{beamer}
+
+\usetheme{Darmstadt}
+
+\usepackage{times}
+\usefonttheme{structurebold}
+
+\usepackage[english]{babel}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{multicol}
+
+\input{slabbrev}
+
+\title{Multivariate and Functional Principal Components without Eigenanalysis}
+
+\author{Jim Ramsay, McGill University \\ SSC 2012}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+
+\maketitle
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{PCA: The essential idea}
+
+\bi
+  \item We have a $N$ by $n$ data matrix $\Xbold$.
+  \item We propose the reduced rank $K$ bilinear model
+  \[
+    \Xbold = \Fbold \Abold
+  \]
+  where
+    \bi
+      \item $\Abold$ is a $K$ by $n$ matrix of principal component coefficients, with $K << n$
+      \item $\Fbold$ is a $N$ by $K$ matrix of principal component scores
+    \ei
+  \item Usually $N >> n$, and the factor scores are interesting, but it's $\Abold$ that tells
+  us what the core $K$ components of variation are, to within a full rank linear transformation.
+  \item The fundamental goal of PCA is to identify a linear subspace $\cal{R}^K$.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{What I'd like to do with PCA}
+
+\bi
+  \item Provide GLM capability: PCA for mixtures of types of variables, using fitting criteria
+  appropriate to each data type.
+  \item Define a fitting strategy that recognizes PC scores $\Fbold$ as nuisance parameters
+  and PC components in $\Abold$ as structural parameters.
+  \item Generalize PCA in many ways, but in this talk to implement partial least squares: an approximation of an external vector $\ybold$ via a $K$ dimensional subspace $\cal{R}^K.$
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Why eigenanalysis gets in the way}
+
+\bi
+  \item The singular value decomposition yields both $\Abold$ and $\Fbold$,
+  \item but the usual procedure is to extract $\Abold$ from the eigenanalysis of $N^{-1} \Xbold' \Xbold$
+  or the correlation matrix $\Rbold$
+  \item and then use regression analysis to obtain
+  \[
+    \Fbold = \Xbold \Abold' (\Abold' \Abold)^{-1}
+  \]
+  \item Eigenanalysis forces us to use least squares fitting for all variables.
+  \item It treats the estimation of $\Fbold$ and $\Abold$ symmetrically.
+  \item It doesn't help for other data analysis problems such as partial least squares.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The parameter cascading strategy}
+
+\bi
+  \item Parameter cascading defines nuisance parameters as \emph{smooth} functions of
+  structural parameters.
+  \item We add smoothness to the least squares criterion for $\Fbold$ given $\Abold$ by attaching penalty terms such as
+  \[
+    J(\Fbold|\Abold,\Xbold) = \| \Xbold - \Fbold \Abold) \|^2 +
+              \lambda_1 \| \Fbold' \Pbold_1 \Fbold \|^2 + \lambda_2 \| \Fbold  \Pbold_2 \Fbold' \|^2.
+  \]
+  \item The minimizer $\hat{\Fbold}(\Abold)$ has a closed form expression.
+  \item Order $K$ matrix $\Pbold_1$ and order $N$ matrix $\Pbold_2$ are often projectors onto complements of some pre-defined subspaces or special patterns.
+  \item Smoothing parameters $\lambda_1 \geq 0$ and $\lambda_2 \geq 0$ allow us to control the emphasis that we place on the PC scores having these particular structures.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The fitting criterion for $\Abold$}
+
+\bi
+  \item This is defined in terms of only the PC coefficients $\Abold$.
+  \item For example, we could use
+  \[
+    G(\Abold) = -\sum_j^n \ln L_j(\Abold|\xbold_j)
+  \]
+  where $-\ln L_j$ is the negative log likelihood appropriate to variable $j$ and
+  defined by data $N$-vector $\xbold_j$.
+  \item Note that the gradient of $G$ will depend on $\Abold$ both directly through its the partial derivative, and also via the $N$ functions $\fbold_i(\Abold)$.
+  \item PCA is now defined as a nonlinear least squares problem with $Kn$ parameters, as opposed to a
+  bilinear least squares problem with $K(N+n)$ parameters.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The PCA/PLS hybrid criterion}
+
+\bi
+  \item Keeping to LS fitting, we now use fitting criterion
+  \[
+    G(\Abold| \Xbold, \ybold) = (1-\gamma) \| \Xbold - \Fbold \Abold \|^2 +
+                                    \gamma \| \ybold' \Qbold(\Abold) \ybold \|^2.
+  \]
+  where the relaxation parameter $\gamma \in [0,1]$ and
+  \[
+    \Qbold(\Abold) = \Ibold - \Fbold(\Abold) [\Fbold(\Abold)' \Fbold(\Abold)]^{-1} \Fbold(\Abold)'.
+  \]
+  \item The second term measures the extent to which $\ybold$ is unpredictable from within the subspace defined by the PC loadings in $\Abold.$
+  \item The boundary conditions $\gamma = 0$ and $\gamma = 1$ correspond to pure PCA and pure PLS, respectively.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Conclusions}
+
+\bi
+  \item Parameter cascading not only regularizes the estimation of nuisance parameters in $\Fbold$,
+  \item it re-defines PCA as a much lower dimensional fitting problem.
+  \item Other variations of PCA are  being investigated, including
+  \bi
+    \item Functional and hybrid multivariate/functional versions of PCA and PCA/PLS
+    \item Registration of functional data to their principal components
+  \ei
+\ei
+
+\end{frame}
+
+\end{document}

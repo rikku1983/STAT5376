@@ -1,0 +1,262 @@
+\documentclass[11pt]{beamer}
+
+\usetheme{Darmstadt}
+
+\usepackage{times}
+\usefonttheme{structurebold}
+
+\usepackage[english]{babel}
+%\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{multicol}
+
+\input{slabbrev}
+
+\title{Multivariate and Functional Principal Components without Eigenanalysis}
+
+\author{Jim Ramsay, McGill University \\
+        Workshop on New Perspectives in FDA \\
+        Caserta, Italy \\
+        26 September 2012}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+
+\maketitle
+
+%\vspace{-1.9cm}
+%\begin{center}
+%\includegraphics[width=2.5in]{figs/maternSig51.png}
+%\end{center}
+
+\end{frame}
+
+%  ---------------------------------------------------------------------
+%  ---------------------------------------------------------------------
+
+\section[Overview]{Introduction}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Where we are going}
+
+\bi
+  \item Principal components analysis has some serious limitations
+  \item Principal components are structural parameters; principal component scores are nuisance parameters
+  \item Parameter cascading defines nuisance parameters as smooth functions of structural parameters,
+  and then optimizes fit with respect to only structural parameters
+  \item What this means for multivariate PCA
+  \item Functional PCA
+  \item Functional PCA with registration
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{PCA: The essential idea}
+
+\bi
+  \item We have a $N$ by $n$ data matrix $\Ybold$.
+  \item We propose the reduced rank bilinear model
+  \[
+    \Ybold = \Fbold \Abold
+  \]
+  where
+    \bi
+      \item $\Abold$ is a $K$ by $n$ matrix of principal component coefficients, with $K << n$
+      \item $\Fbold$ is a $N$ by $K$ matrix of principal component scores
+    \ei
+  \item Usually $N >> n$, and the factor scores are interesting, but it's $\Abold$ that tells
+  us what the core $K$ components of variation are, to within a full rank linear transformation.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Estimation of the PCA model}
+
+\bi
+  \item We can use the singular value decomposition to get both $\Abold$ and $\Fbold$ in one step,
+  \item but the usual procedure is to extract $\Abold$ from the eigenanalysis of $N^{-1} \Ybold' \Ybold$
+  or the corresponding correlation matrix $\Rbold$
+  \item and then use regression analysis to obtain
+  \[
+    \Fbold = \Ybold \Abold' (\Abold' \Abold)^{-1}
+  \]
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{What are nuisance parameters?}
+
+\bi
+  \item Many models contain parameters that are not themselves of much direct interest, but which must be in the model because they explain a substantial amount of the variance. They may also have these characteristics:
+  \bi
+    \item Their number may be far greater than that of the structural parameters, which are of direct interest.
+    \item Their number may also vary in proportion to the amount of data.
+    \item Each of them typically controls the fit to only a small numbers of observations.
+  \ei
+  \item Principal component scores are an example, as are ability parameters in a test theory model.
+  \item Often nuisance parameters are treated as random effects, as in the hierarchical linear model.
+\ei
+\end{frame}
+
+%  ---------------------------------------------------------------------
+%  ---------------------------------------------------------------------
+
+\section[PCA Limitations]{What's not to love about PCA?}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The least squares issue}
+
+\bi
+  \item PCA defined this way is a least squares fit to the data, even when the variables may be
+  \bi
+    \item discrete or even binary
+    \item bounded between two limits
+    \item otherwise severely non-normal
+    \item have outliers or be heavy-tailed
+  \ei
+
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The eigenvector issue}
+
+\bi
+  \item The rows of $\Abold$ are proportional to the eigenvectors of $\Rbold$, and
+  span the subspace of dimension $K$.
+  \item Social science statisticians all know that they are seldom of of great interest,
+  and that they can be either rotated or linearly transformed to define new vectors
+  spanning the same space that are much more easily interpreted or labelled
+  \item But generations of statisticians elsewhere learn about PCA from well-known textbooks that
+  never mention rotation, and attempt to extract meaning from eigenvectors.
+  \item Eigenvectors are just biproducts of the the computation process, and therefore of
+  computational interest only.
+  \item Eigenvalues are only informative in terms of the cumulative sums.
+  \item PCA is widely misunderstood as a consequence.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The estimation issue}
+
+\bi
+  \item PCA as we know it treats the estimation of $\Abold$ and $\Fbold$ completely symmetrically.
+  \item But PC scores are effectively nuisance parameters or random effects, while PC coefficients are structural parameters or fixed effects.
+  \item We know that the need to estimate large numbers of nuisance or random parameters can seriously degrade the quality of estimates of structural or fixed parameters.
+  \item Test theory, hierarchical linear modeling and many other methods have evolved to control
+  this impact so as to improve the estimation core fixed-size parameters like $\Abold.$
+  \item The usual approach is to apply some smoothing or regularization to the high-dimensional nuisance parameters.  How can we do this in PCA?
+\ei
+
+\end{frame}
+
+%  ---------------------------------------------------------------------
+%  ---------------------------------------------------------------------
+
+\section{Parameter Cascading}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{How does it work?}
+
+\bi
+  \item Parameter cascading defines nuisance parameters as \emph{smooth} functions of
+  structural parameters.
+  \item The PCA regression equation
+  \[
+    \Fbold(\Abold) = \Ybold \Abold' (\Abold' \Abold)^{-1}
+  \]
+  already defines PC scores as functions of PC coefficients.
+  \item We add smoothness by attaching a penalty term such as
+  \[
+    \Fbold(\Abold) = \Ybold \Abold' (\Abold' \Abold)^{-1} + \lambda \trace [ \Fbold' \Pbold \Fbold ]
+  \]
+  \item Order $K$ matrix $\Pbold$ can be a projection onto the complement of some pre-defined subspace or special pattern.
+  \item The roughness penalty measure the extent to which the rows of $\Fbold$ fail to satisfy some
+  constraint.
+  \item Smoothing parameter $\lambda \geq 0$ allows us to control the emphasis that we place on
+  the PC scores having this particular structure.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{The fitting criterion for $\Abold$}
+
+\bi
+  \item This is defined in terms of only the PC coefficients $\Abold$.
+  \item For example, we could use
+  \[
+    G(\Abold) = -\sum_j^n \ln L_j(\Abold|\ybold_j)
+  \]
+  where $-\ln L_j$ is the negative log likelihood appropriate to variable $j$ and
+  defined by data $N$-vector $\ybold_j$.
+  \item Note that the gradient of $G$ will depend on $\Abold$ both directly through its the partial derivative, and also via the $N$ functions $\fbold_i(\Abold)$.
+  \item That is, we need the total derivative
+  \[
+    \frac{dG}{d \Abold} = \frac{\partial G}{\partial \Abold} + \sum_i^N \frac{dF_i}{d \Abold}
+  \]
+  where the fitting functions $F_i$ are specific to the data $n$-vectors $\ybold^i$.
+\ei
+
+\end{frame}
+
+%  --------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{Bringing in the Implicit Function Theorem}
+
+\bi
+  \item These computations seem possible when we have an explicit formula for how
+  the PC scores $\fbold_i$ depend on $\Abold$, as we have just proposed.
+  \item But what about when the functional relationship is defined by the numerical
+  optimization of fitting functions $F_i$ with respect to $\fbold_i$?  How do we get
+  $\frac{dF_i}{d \Abold}$ in this case?
+  \item In this case we bring in the Implicit Functional Theorem, a result that
+  should be much better known than it is.
+  \item It states that the total derivative of $G$ is
+  \[
+    \frac{dG}{d \Abold} = \frac{\partial G}{\partial \Abold} -
+    \sum_i^N (\frac{\partial G}{\partial \fbold_i}) (\frac{\partial^2 F_i}{\partial^2 \fbold_i})^{-1}
+    (\frac{\partial^2 F_i}{\partial \fbold_i \partial \Abold})
+  \]
+\ei
+
+\end{frame}
+
+\end{document}

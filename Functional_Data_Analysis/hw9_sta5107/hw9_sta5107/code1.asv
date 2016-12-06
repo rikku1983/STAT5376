@@ -1,0 +1,13 @@
+clear all
+clc;
+n=100;
+x=[0:n]/n;
+f=normpdf(x,0.3,0.08)*1.4;
+g=normpdf(x,0.5,0.08);
+
+figure(1);
+plot(f);
+hold on;
+plot(g);
+DPalog(f,g);
+
